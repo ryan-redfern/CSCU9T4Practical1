@@ -1,88 +1,79 @@
-// This class holds information about a single training session
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.stir.cscu9t4practical1;
 
 import java.util.Calendar;
-public class Entry {
-  private String name;
+
+/**
+ *
+ * @author 44752
+ */
+public class SprintEntry extends Entry {
+    private String name;
   private Calendar dateAndTime;
   private float distance;
-  String terrain;
-  String tempo;
-  int repetitions;
-  int recovery;
-  String location;
-  
-  public Entry (String n, int d, int m, int y, int h, int min, int s, float dist) {
-    name = n;
+
+      public SprintEntry (String n, int d, int m, int y, int h, int min, int s, float dist, int rep, int rec) {
+    super(n, d, m, y, h, min, s, dist);
+    recovery = rec;
+    repetitions = rep;
     Calendar inst = Calendar.getInstance();
     inst.set(y,m-1,d,h,min,s);
-    dateAndTime = inst;
     distance = dist;
+    dateAndTime = inst;
+    name = n;
   } //constructor
-  
+  @Override
   public String getName () {
     return name;
   } //getName
-  
+  @Override
   public int getDay () {
     return dateAndTime.get(Calendar.DATE);
   } //getDay
-  
+  @Override
   public int getMonth () {
     int month =  dateAndTime.get(Calendar.MONTH) + 1;
     return month;
   } //getMonth
-  
+  @Override
   public int getYear () {
     return dateAndTime.get(Calendar.YEAR);
   } //getYear
-
+@Override
   public int getHour () {
     return dateAndTime.get(Calendar.HOUR);
   } //getHour
-
+@Override
   public int getMin () {
     return dateAndTime.get(Calendar.MINUTE);
   } //getMin
-
+@Override
   public int getSec () {
     return dateAndTime.get(Calendar.SECOND);
   } //getSec
-
+@Override
   public float getDistance () {
     return distance;
   } //getYear
-  public String getTempo(){
-      return tempo;
-      
-  }
-  public String getTerrain(){
-      return terrain;
-      
-  }
+  @Override
   public int getRepetitions(){
-      return repetitions;
-      
+      return this.repetitions;
   }
+  @Override
   public int getRecovery(){
-      return recovery;
-      
-  }
-   public String getWhere(){
-      return location;
-      
+      return this.recovery;
   }
   
-
-
-
+@Override
   public String getEntry () {
-   String result = getName()+" ran " + getDistance() + " km in "
+   String result = getName()+" sprinted " + getDistance() + " km in "
              +getHour()+":"+getMin()+":"+ getSec() + " on "
-             +getDay()+"/"+getMonth()+"/"+getYear()+"\n";
+             +getDay()+"/"+getMonth()+"/"+getYear()+" with " + getRecovery() + " minutes recovery \n";
    return result;
-  } //getEntry
-
-
-   
-} // Entry
+  } //getEntry 
+    
+}
